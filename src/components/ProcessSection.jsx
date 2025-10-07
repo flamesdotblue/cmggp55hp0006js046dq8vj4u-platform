@@ -1,8 +1,9 @@
 export default function ProcessSection() {
   return (
-    <section className="py-12 sm:py-16">
+    <section id="process" className="py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl sm:text-3xl font-semibold text-white">Von unstrukturiertem Input zu professionellem Zeugnis</h2>
+
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
           <Step
             title="SCHRITT 1: Ihre Angaben (2 Min.)"
