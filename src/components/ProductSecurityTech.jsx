@@ -31,32 +31,6 @@ export default function ProductSecurityTech() {
             </ul>
           </div>
         </div>
-
-        <div className="mt-8 rounded-lg border border-neutral-200 bg-white p-6 shadow-sm">
-          <h4 className="text-neutral-900 font-medium">Für welche Situationen?</h4>
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4">
-              <div className="text-neutral-900 font-medium">Ideal für</div>
-              <ul className="mt-2 text-sm text-neutral-800 space-y-1">
-                <li>✓ Normale Mitarbeiteraustritte (Eigenkündigung)</li>
-                <li>✓ Vertragsende und Befristungen</li>
-                <li>✓ Routine‑Leistungsbewertungen</li>
-                <li>✓ Mehrsprachige Teams (z. B. CH: DE/FR/IT)</li>
-                <li>✓ 5–50 Zeugnisse pro Jahr</li>
-              </ul>
-            </div>
-            <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4">
-              <div className="text-neutral-900 font-medium">Anwalt konsultieren bei</div>
-              <ul className="mt-2 text-sm text-neutral-800 space-y-1">
-                <li>❌ Strittigen oder arbeitgeberseitigen Kündigungen</li>
-                <li>❌ Laufenden arbeitsrechtlichen Streitigkeiten</li>
-                <li>❌ C‑Level oder Führungspositionen</li>
-                <li>❌ Dokumentierten schweren Leistungsproblemen</li>
-              </ul>
-            </div>
-          </div>
-          <p className="mt-3 text-xs text-neutral-600">Tipp: Nutzen Sie ZertAI für 80% der Routinefälle und sparen Sie Anwaltskosten für die 20% Spezialfälle.</p>
-        </div>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { ArrowRight, Languages } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function ProductHero() {
   return (
@@ -41,9 +42,9 @@ export default function ProductHero() {
         </div>
 
         <div className="mt-8 flex flex-wrap items-center gap-3">
-          <a href="/pricing" className="inline-flex items-center justify-center rounded-md bg-neutral-900 text-white px-5 py-3 text-sm font-semibold hover:bg-neutral-800">
+          <Link to="/pricing" className="inline-flex items-center justify-center rounded-md bg-neutral-900 text-white px-5 py-3 text-sm font-semibold hover:bg-neutral-800">
             Jetzt kostenlos testen <ArrowRight className="ml-2 h-4 w-4" />
-          </a>
+          </Link>
           <span className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs text-neutral-700 shadow-sm">
             <Languages className="h-4 w-4" /> DE • FR • IT • EN
           </span>
