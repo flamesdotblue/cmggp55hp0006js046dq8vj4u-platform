@@ -1,31 +1,48 @@
-import Hero from './components/Hero';
-import ProcessSection from './components/ProcessSection';
-import ExampleTabs from './components/ExampleTabs';
-import TrustSection from './components/TrustSection';
+import { RouterProvider, createBrowserRouter, Outlet, Link } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import TopBanner from './components/TopBanner';
 
-function App() {
+import Home from './pages/Home';
+import Product from './pages/Product';
+import Pricing from './pages/Pricing';
+import NotFound from './pages/NotFound';
+
+function RootLayout() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 antialiased">
-      <Hero />
+    <div className="min-h-screen bg-white text-neutral-900">
+      <TopBanner />
+      <Navbar />
       <main>
-        <ProcessSection />
-        <ExampleTabs />
-        <TrustSection />
+        <Outlet />
       </main>
-      <footer className="border-t border-white/10 bg-neutral-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex items-center gap-2">
-            <div className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-amber-400" />
-            <span className="font-semibold tracking-tight text-white">ZertAI</span>
-          </div>
-          <p className="mt-2 text-sm text-neutral-400 max-w-xl">
-            🔐 Datenschutz nach Schweizer Standards — Verarbeitung nur in EU‑Rechenzentren (Zürich/Frankfurt), DSGVO‑konform. Ihre Daten trainieren nie unsere KI.
-          </p>
-          <div className="mt-6 text-xs text-neutral-500">© {new Date().getFullYear()} ZertAI. All rights reserved.</div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
 
-export default App;
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    errorElement: (
+      <div className="min-h-[60vh] grid place-items-center p-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-semibold text-neutral-900">Seite nicht gefunden</h1>
+          <p className="mt-2 text-neutral-600">Die angeforderte Seite existiert nicht.</p>
+          <Link to="/" className="mt-6 inline-flex rounded-md bg-neutral-900 text-white px-4 py-2 text-sm font-medium hover:bg-neutral-800">Zur Startseite</Link>
+        </div>
+      </div>
+    ),
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'product', element: <Product /> },
+      { path: 'pricing', element: <Pricing /> },
+      { path: '*', element: <NotFound /> },
+    ],
+  },
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}

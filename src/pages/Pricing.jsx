@@ -1,30 +1,28 @@
 import { Check } from 'lucide-react';
-import ValueCalculator from '../components/ValueCalculator';
-import PricingFAQ from '../components/PricingFAQ';
 
 const plans = [
   {
     name: 'Starter',
     price: '€0',
     cadence: 'für immer',
-    features: ['3 Dokumente / Monat', 'Einzelbenutzer', 'DE Sprache', 'Basis-Templates'],
-    cta: '3 kostenlos starten',
+    features: ['3 Dokumente / Monat', 'Einzelnutzer', 'Deutsch (DE)', 'Basis‑Vorlagen'],
+    cta: 'Kostenlos starten',
     highlight: false,
   },
   {
     name: 'Team',
     price: '€99',
     cadence: 'pro Monat',
-    features: ['Unbegrenzte Dokumente', 'Bis zu 10 Benutzer', 'DE · FR · IT · EN', 'Brand-Exporte (PDF/Word)'],
-    cta: '14 Tage testen',
+    features: ['Unbegrenzte Dokumente', 'Bis zu 10 Nutzer', 'DE • FR • IT • EN', 'Brand‑Export (PDF/Word)'],
+    cta: '14‑Tage‑Test starten',
     highlight: true,
   },
   {
     name: 'Business',
     price: '€249',
     cadence: 'pro Monat',
-    features: ['Unbegrenzte Dokumente', 'SSO & Rollen', 'Policy-Engine & Audit-Log', 'Priorisierter Support'],
-    cta: 'Kontakt aufnehmen',
+    features: ['Unbegrenzte Dokumente', 'SSO & Rollen', 'Policy‑Engine & Audit‑Log', 'Priorisierter Support'],
+    cta: 'Vertrieb kontaktieren',
     highlight: false,
   },
 ];
@@ -34,18 +32,16 @@ export default function Pricing() {
     <main className="py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl sm:text-4xl font-semibold text-neutral-900">Transparente Preise</h1>
-        <p className="mt-3 text-neutral-700">Keine Tricks. Wählen Sie den Plan, der zu Ihrem Workflow passt. Jederzeit kündbar.</p>
-
-        <ValueCalculator />
+        <p className="mt-3 text-neutral-700">Wählen Sie den Plan, der zu Ihrem Workflow passt. Jederzeit kündbar.</p>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {plans.map((plan) => (
-            <div key={plan.name} className={`rounded-2xl border ${plan.highlight ? 'border-fuchsia-400/40 bg-fuchsia-50' : 'border-neutral-200 bg-white'} p-6 flex flex-col`}>
+            <div key={plan.name} className={`rounded-2xl border ${plan.highlight ? 'border-fuchsia-300 bg-fuchsia-50' : 'border-neutral-200 bg-white'} p-6 flex flex-col shadow-sm`}>
               <div className="flex-1">
                 <h3 className="text-neutral-900 font-medium text-lg">{plan.name}</h3>
                 <div className="mt-4 flex items-baseline gap-2">
                   <span className="text-3xl font-semibold text-neutral-900">{plan.price}</span>
-                  <span className="text-sm text-neutral-500">{plan.cadence}</span>
+                  <span className="text-sm text-neutral-600">{plan.cadence}</span>
                 </div>
                 <ul className="mt-4 space-y-2 text-sm text-neutral-800">
                   {plan.features.map((f) => (
@@ -60,9 +56,7 @@ export default function Pricing() {
           ))}
         </div>
 
-        <p className="mt-8 text-xs text-neutral-500">ZertAI generiert Entwürfe zur Beschleunigung Ihrer Arbeit. Prüfen und genehmigen Sie stets vor Ausgabe.</p>
-
-        <PricingFAQ />
+        <p className="mt-8 text-xs text-neutral-500">ZertAI erstellt Entwürfe, die Ihre Arbeit beschleunigen. Bitte prüfen und genehmigen Sie jedes Dokument vor der Ausgabe – keine 100%‑Garantie ohne fachliche Prüfung.</p>
       </div>
     </main>
   );

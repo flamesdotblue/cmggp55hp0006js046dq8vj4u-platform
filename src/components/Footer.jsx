@@ -11,7 +11,7 @@ export default function Footer() {
               <span className="font-semibold tracking-tight text-neutral-900">ZertAI</span>
             </div>
             <p className="mt-2 text-sm text-neutral-600 max-w-md">
-              Wir automatisieren Arbeitszeugnisse mit Transparenz und Sorgfalt—damit Sie sich auf Menschen statt Papierkram konzentrieren.
+              Wir automatisieren Arbeitszeugnisse mit Transparenz und Sorgfalt – damit Sie sich auf Menschen konzentrieren können, nicht auf Papierkram.
             </p>
           </div>
           <nav className="flex gap-4 text-sm text-neutral-600">
