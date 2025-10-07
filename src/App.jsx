@@ -12,7 +12,7 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-white text-neutral-900 antialiased">
+      <div className="min-h-screen bg-neutral-950 text-neutral-100 antialiased">
         <Navbar />
         <Routes>
           <Route
