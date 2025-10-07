@@ -29,7 +29,7 @@ export default function Hero() {
 
         <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
           <a
-            href="#pricing"
+            href="#process"
             className="inline-flex items-center justify-center rounded-md bg-white text-neutral-900 px-5 py-3 text-sm font-semibold shadow-sm hover:bg-white/90"
           >
             Jetzt kostenlos testen → <span className="ml-1 hidden sm:inline">3 Zeugnisse gratis</span>
