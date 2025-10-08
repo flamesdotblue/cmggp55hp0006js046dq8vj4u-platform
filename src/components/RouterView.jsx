@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter, Outlet, Link } from 'react-router-dom';
-import { ArrowRight, Check, Star } from 'lucide-react';
+import { ArrowRight, Check, Star, Languages, MessageSquare, Upload, FileText, Shield, Lock, Cpu } from 'lucide-react';
 
 function RootLayout() {
   return (
@@ -9,6 +9,7 @@ function RootLayout() {
   );
 }
 
+// HOMEPAGE (from 7507353 style)
 function HomePage() {
   return (
     <section className="py-16">
@@ -16,7 +17,7 @@ function HomePage() {
         <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs text-neutral-700 shadow-sm">
           ✨ KI‑Assistent für DACH‑Arbeitszeugnisse
         </div>
-        <h1 className="mt-4 text-4xl sm:text-5xl font-semibold tracking-tight text-neutral-900">
+        <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900">
           Arbeitszeugnisse in 5 Minuten erstellen—
           <br className="hidden sm:block" />
           nicht mehr 2 Stunden
@@ -72,46 +73,162 @@ function HomePage() {
   );
 }
 
+// PRODUCT PAGE (from 675decc detailed)
 function ProductPage() {
+  const OverviewCard = ({ step, title, time, points }) => (
+    <div className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+      <div className="text-xs font-medium text-neutral-600">{step} • {time}</div>
+      <h3 className="mt-1 text-neutral-900 font-medium">{title}</h3>
+      <ul className="mt-2 space-y-1 text-sm text-neutral-700">
+        {points.map((p) => (
+          <li key={p}>• {p}</li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  const rows = [
+    { label: 'Zeit', word: '1–2 Stunden', berater: '1–2 Wochen', zertai: '5 Minuten' },
+    { label: 'Kosten', word: '≈ €50', berater: '€250–500', zertai: '€3–10' },
+    { label: 'Sprachen', word: '1', berater: '1–2', zertai: '4 gleichzeitig' },
+    { label: 'Konsistenz', word: 'Niedrig', berater: 'Mittel', zertai: 'Hoch' },
+    { label: 'Rechtliche Basis', word: 'Fragwürdig', berater: 'Ja', zertai: 'Informiert*' },
+    { label: 'Bearbeitbar', word: 'Ja', berater: 'Begrenzt', zertai: 'Vollständig' },
+    { label: 'Sofort verfügbar', word: 'Ja', berater: 'Nein', zertai: 'Ja' },
+  ];
+
+  const faqs = [
+    {
+      q: 'Wie genau ist die rechtliche Sprache?',
+      a: 'Die KI wurde mit 10.000+ realen Zeugnissen und Gerichtsurteilen trainiert. Sie generiert rechtlich informierte Formulierungen basierend auf DACH‑Standards. Aber: Keine 100%‑Garantie ohne Fachprüfung.'
+    },
+    {
+      q: 'Kann ich die generierten Texte bearbeiten?',
+      a: 'Ja, vollständig. Jeder Abschnitt ist editierbar. Sie haben volle Kontrolle.'
+    },
+    {
+      q: 'Funktioniert es auch ohne HRIS?',
+      a: 'Ja. Sie können Daten manuell über das Konversations‑Interface eingeben oder eine Excel/CSV hochladen.'
+    },
+    {
+      q: 'Wie lange dauert die Generierung wirklich?',
+      a: 'Dateneingabe: 2 Minuten · KI‑Generierung: 30 Sekunden · Prüfen & Exportieren: 2 Minuten · Gesamt: ~5 Minuten pro Zeugnis.'
+    },
+    {
+      q: 'Was passiert, wenn ich mit dem Ergebnis nicht zufrieden bin?',
+      a: 'Sie können jeden Abschnitt neu generieren lassen oder manuell bearbeiten. Falls nichts hilft: Rückerstattung innerhalb 7 Tagen.'
+    },
+  ];
+
   return (
     <main className="py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl sm:text-4xl font-semibold text-neutral-900">Wie ZertAI funktioniert</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Wie ZertAI funktioniert</h1>
         <p className="mt-3 text-neutral-700 max-w-2xl">Von der ersten Frage bis zum fertigen Arbeitszeugnis in 5 Minuten. Keine Installation, keine Schulung — einfach starten.</p>
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
-            <div className="text-xs font-medium text-neutral-600">SCHRITT 1 • 2 Minuten</div>
-            <h3 className="mt-1 text-neutral-900 font-medium">Ihre Angaben</h3>
-            <ul className="mt-2 space-y-1 text-sm text-neutral-700">
-              <li>• Name, Rolle, Zeitraum</li>
-              <li>• Leistungsbewertung (1–3)</li>
-              <li>• Hauptaufgaben (Stichpunkte)</li>
-            </ul>
-          </div>
-          <div className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
-            <div className="text-xs font-medium text-neutral-600">SCHRITT 2 • 30 Sekunden</div>
-            <h3 className="mt-1 text-neutral-900 font-medium">KI‑Generierung</h3>
-            <ul className="mt-2 space-y-1 text-sm text-neutral-700">
-              <li>• Rechtlich informierte Formulierungen</li>
-              <li>• Rollengerechte Verantwortung</li>
-              <li>• Alle 4 Sprachen gleichzeitig</li>
-            </ul>
-          </div>
-          <div className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
-            <div className="text-xs font-medium text-neutral-600">SCHRITT 3 • 2 Minuten</div>
-            <h3 className="mt-1 text-neutral-900 font-medium">Prüfen & Export</h3>
-            <ul className="mt-2 space-y-1 text-sm text-neutral-700">
-              <li>• Abschnitte bearbeiten</li>
-              <li>• PDF/Word mit Branding</li>
-              <li>• Versionshistorie</li>
-            </ul>
-          </div>
+          <OverviewCard step="SCHRITT 1" title="Ihre Angaben" time="2 Minuten" points={[
+            'Name, Rolle, Zeitraum',
+            'Leistungsbewertung (1–3)',
+            'Hauptaufgaben (Stichpunkte)'
+          ]} />
+          <OverviewCard step="SCHRITT 2" title="KI‑Generierung" time="30 Sekunden" points={[
+            'Rechtlich informierte Formulierungen',
+            'Rollengerechte Verantwortung',
+            'Alle 4 Sprachen gleichzeitig'
+          ]} />
+          <OverviewCard step="SCHRITT 3" title="Prüfen & Export" time="2 Minuten" points={[
+            'Abschnitte bearbeiten',
+            'PDF/Word mit Branding',
+            'Versionshistorie'
+          ]} />
         </div>
 
-        <div className="mt-12 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h2 className="text-xl text-neutral-900 font-medium">Vergleich mit anderen Lösungen</h2>
-          <div className="mt-4 overflow-x-auto rounded-lg border border-neutral-200">
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <Link to="/pricing" className="inline-flex items-center justify-center rounded-md bg-neutral-900 text-white px-5 py-3 text-sm font-semibold hover:bg-neutral-800">
+            Jetzt kostenlos testen <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+          <span className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs text-neutral-700 shadow-sm">
+            <Languages className="h-4 w-4" /> DE • FR • IT • EN
+          </span>
+        </div>
+
+        <section className="py-12 sm:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-semibold">Schritt‑für‑Schritt</h2>
+
+              <div className="mt-6 space-y-6">
+                <div className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-100 text-neutral-900"><MessageSquare className="h-5 w-5" /></div>
+                  <h4 className="mt-3 text-neutral-900 font-medium">Schnelle Dateneingabe (Konversation)</h4>
+                  <ul className="mt-2 text-sm text-neutral-700 space-y-1">
+                    <li>• Beantworten Sie einfache Fragen (Name, Rolle, Zeitraum)</li>
+                    <li>• Leistungsbewertung: ⭐ bis ⭐⭐⭐</li>
+                    <li>• Hauptaufgaben als Stichpunkte</li>
+                  </ul>
+                </div>
+
+                <div className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-100 text-neutral-900"><Upload className="h-5 w-5" /></div>
+                  <h4 className="mt-3 text-neutral-900 font-medium">CSV‑Import (Mehrere Zeugnisse)</h4>
+                  <ul className="mt-2 text-sm text-neutral-700 space-y-1">
+                    <li>• Export aus HRIS oder Excel hochladen</li>
+                    <li>• Felderzuordnung automatisch erkennen</li>
+                    <li>• Alle Zeugnisse in einem Durchlauf generieren</li>
+                  </ul>
+                </div>
+
+                <div className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-100 text-neutral-900"><FileText className="h-5 w-5" /></div>
+                  <h4 className="mt-3 text-neutral-900 font-medium">KI‑Generierung & Bearbeitung</h4>
+                  <ul className="mt-2 text-sm text-neutral-700 space-y-1">
+                    <li>• Rechtlich informierte Formulierungen in 4 Sprachen</li>
+                    <li>• Rollengerechte Verantwortungstexte</li>
+                    <li>• Abschnitte bearbeiten, neu generieren, speichern</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-6 rounded-lg border border-amber-300 bg-amber-50 p-4 text-amber-900 text-sm">
+                ⚠️ Wichtig: Die KI schlägt Formulierungen vor, Sie entscheiden. Keine 100%‑Rechtsgarantie ohne fachliche Prüfung.
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <h3 className="text-neutral-900 font-medium">Beispiel: Bewertung → Formulierung</h3>
+              <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4">
+                  <div className="text-sm text-neutral-700">Ihre Eingabe</div>
+                  <ul className="mt-2 text-sm text-neutral-800 space-y-1">
+                    <li>• Rolle: Senior Produktmanagerin</li>
+                    <li>• Zeitraum: 01.03.2021 – 30.06.2025</li>
+                    <li>• Leistung: ⭐⭐⭐ (Sehr gut)</li>
+                    <li>• Aufgaben: Planung, Koordination, Marktanalyse</li>
+                  </ul>
+                </div>
+                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4">
+                  <div className="text-sm text-neutral-700">Generierte Formulierungen</div>
+                  <ul className="mt-2 text-sm text-neutral-800 space-y-1">
+                    <li>✓ DE: „stets zur vollsten Zufriedenheit“</li>
+                    <li>✓ FR: „toujours à l’entière satisfaction“</li>
+                    <li>✓ IT: „sempre con la massima soddisfazione“</li>
+                    <li>✓ EN: „always to our fullest satisfaction“</li>
+                  </ul>
+                </div>
+              </div>
+              <ul className="mt-4 text-sm text-neutral-700 space-y-1">
+                <li className="flex gap-2"><Check className="h-4 w-4 text-emerald-600" /> Kulturell angepasste Sprache, nicht nur Übersetzung</li>
+                <li className="flex gap-2"><Check className="h-4 w-4 text-emerald-600" /> Vorschau in Echtzeit, jede Passage editierbar</li>
+                <li className="flex gap-2"><Check className="h-4 w-4 text-emerald-600" /> Export als PDF/Word mit Branding</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-12">
+          <h2 className="text-2xl sm:text-3xl font-semibold">Vergleich mit anderen Lösungen</h2>
+          <div className="mt-6 overflow-x-auto rounded-xl border border-neutral-200 bg-white shadow-sm">
             <table className="w-full text-sm">
               <thead className="bg-neutral-50 text-neutral-700">
                 <tr>
@@ -122,15 +239,7 @@ function ProductPage() {
                 </tr>
               </thead>
               <tbody>
-                {[
-                  { label: 'Zeit', word: '1–2 Stunden', berater: '1–2 Wochen', zertai: '5 Minuten' },
-                  { label: 'Kosten', word: '≈ €50', berater: '€250–500', zertai: '€3–10' },
-                  { label: 'Sprachen', word: '1', berater: '1–2', zertai: '4 gleichzeitig' },
-                  { label: 'Konsistenz', word: 'Niedrig', berater: 'Mittel', zertai: 'Hoch' },
-                  { label: 'Rechtliche Basis', word: 'Fragwürdig', berater: 'Ja', zertai: 'Informiert*' },
-                  { label: 'Bearbeitbar', word: 'Ja', berater: 'Begrenzt', zertai: 'Vollständig' },
-                  { label: 'Sofort verfügbar', word: 'Ja', berater: 'Nein', zertai: 'Ja' },
-                ].map((r, i) => (
+                {rows.map((r, i) => (
                   <tr key={r.label} className={i % 2 === 1 ? 'bg-neutral-50 border-t border-neutral-200' : 'border-t border-neutral-200'}>
                     <td className="p-3 text-neutral-800">{r.label}</td>
                     <td className="p-3 text-neutral-900">{r.word}</td>
@@ -142,56 +251,94 @@ function ProductPage() {
             </table>
           </div>
           <p className="mt-3 text-xs text-neutral-600">* Rechtlich informierte Formulierungen, keine 100%‑Garantie ohne fachliche Prüfung.</p>
-        </div>
+        </section>
 
-        <div className="mt-10 rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-center">
-          <h3 className="text-xl font-semibold text-neutral-900">Bereit, es auszuprobieren?</h3>
-          <p className="mt-2 text-neutral-700">3 Zeugnisse kostenlos • Keine Kreditkarte • 5 Minuten Setup</p>
-          <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
-            <Link to="/pricing" className="inline-flex items-center justify-center rounded-md bg-neutral-900 text-white px-5 py-2.5 text-sm font-semibold hover:bg-neutral-800">Kostenlos testen</Link>
-            <Link to="/pricing" className="inline-flex items-center justify-center rounded-md border border-neutral-300 bg-white px-5 py-2.5 text-sm font-medium text-neutral-900 hover:bg-neutral-50">Preise ansehen</Link>
+        <section className="py-12">
+          <h3 className="text-neutral-900 font-medium">Integration & Kompatibilität</h3>
+          <div className="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+              <h4 className="text-neutral-900 font-medium">CSV‑Import</h4>
+              <ul className="mt-2 text-sm text-neutral-700 space-y-1">
+                <li>• Personio</li>
+                <li>• BambooHR</li>
+                <li>• SAP SuccessFactors</li>
+                <li>• Workday</li>
+                <li>• ADP</li>
+                <li>• Excel / Google Sheets</li>
+              </ul>
+            </div>
+            <div className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+              <h4 className="text-neutral-900 font-medium">Export‑Formate</h4>
+              <ul className="mt-2 text-sm text-neutral-700 space-y-1">
+                <li>• PDF (mit Ihrem Branding)</li>
+                <li>• Word (bearbeitbar)</li>
+                <li>• Alle 4 Sprachen gleichzeitig</li>
+              </ul>
+            </div>
+            <div className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+              <h4 className="text-neutral-900 font-medium">Browser‑Kompatibilität</h4>
+              <ul className="mt-2 text-sm text-neutral-700 space-y-1">
+                <li>• Keine Installation erforderlich</li>
+                <li>• Chrome, Firefox, Safari, Edge</li>
+                <li>• Funktioniert auf Mac, Windows, Linux</li>
+              </ul>
+            </div>
           </div>
-        </div>
+        </section>
+
+        <section className="py-12">
+          <h2 className="text-2xl sm:text-3xl font-semibold">Häufige Fragen zur Funktionsweise</h2>
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {faqs.map((item) => (
+              <div key={item.q} className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+                <div className="text-neutral-900 font-medium">❓ {item.q}</div>
+                <p className="mt-2 text-sm text-neutral-700 leading-relaxed">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="py-12">
+          <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 text-center">
+            <h3 className="text-xl font-semibold text-neutral-900">Bereit, es auszuprobieren?</h3>
+            <p className="mt-2 text-neutral-700">3 Zeugnisse kostenlos • Keine Kreditkarte • 5 Minuten Setup</p>
+            <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
+              <Link to="/pricing" className="inline-flex items-center justify-center rounded-md bg-neutral-900 text-white px-5 py-2.5 text-sm font-semibold hover:bg-neutral-800">Kostenlos testen</Link>
+              <Link to="/pricing" className="inline-flex items-center justify-center rounded-md border border-neutral-300 bg-white px-5 py-2.5 text-sm font-medium text-neutral-900 hover:bg-neutral-50">Preise ansehen</Link>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   );
 }
 
+// PRICING PAGE (from 7507353 light version)
 function PricingPage() {
   const plans = [
     {
       name: 'Starter',
       price: '€0',
       cadence: 'für immer',
-      blurb: ['Für gelegentliche Nutzung', 'Testen Sie ZertAI ohne Risiko'],
-      features: ['3 Dokumente / Monat', 'Einzelnutzer', '1 Sprache (Deutsch)', 'Basis‑Vorlagen'],
-      cta: 'Jetzt kostenlos starten',
-      ctaSub: 'Keine Kreditkarte erforderlich',
+      features: ['3 Dokumente / Monat', 'Einzelnutzer', 'Deutsch (DE)', 'Basis‑Vorlagen'],
+      cta: 'Kostenlos starten',
       highlight: false,
-      disclaimer: '⚠️ Hinweis: Sie prüfen und genehmigen jedes Dokument',
     },
     {
       name: 'Team',
       price: '€99',
       cadence: 'pro Monat',
-      badge: '🔥 Meistgewählt',
-      blurb: ['Für HR‑Teams und wachsende Unternehmen', '∼€5 pro Zeugnis bei 20/Monat'],
       features: ['Unbegrenzte Dokumente', 'Bis zu 10 Nutzer', 'DE • FR • IT • EN', 'Brand‑Export (PDF/Word)'],
-      cta: 'Team‑Plan testen →',
-      ctaSub: 'Jederzeit kündbar • Alle Features 14 Tage testen',
+      cta: '14‑Tage‑Test starten',
       highlight: true,
-      disclaimer: '⚠️ Hinweis: Sie prüfen und genehmigen jedes Dokument',
     },
     {
       name: 'Business',
-      price: 'Ab €249',
+      price: '€249',
       cadence: 'pro Monat',
-      blurb: ['Für Unternehmen mit hohem Volumen', 'Enterprise‑Features und Compliance'],
       features: ['Unbegrenzte Dokumente', 'SSO & Rollen', 'Policy‑Engine & Audit‑Log', 'Priorisierter Support'],
-      cta: 'Angebot anfragen →',
-      ctaSub: 'Antwort innerhalb 24 Stunden',
+      cta: 'Vertrieb kontaktieren',
       highlight: false,
-      disclaimer: '⚠️ Hinweis: Sie prüfen und genehmigen jedes Dokument',
     },
   ];
 
@@ -201,24 +348,11 @@ function PricingPage() {
         <h1 className="text-3xl sm:text-4xl font-semibold text-neutral-900">Transparente Preise</h1>
         <p className="mt-3 text-neutral-700">Wählen Sie den Plan, der zu Ihrem Workflow passt. Jederzeit kündbar.</p>
 
-        <section id="plans" className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`relative rounded-2xl border ${plan.highlight ? 'border-fuchsia-300 bg-fuchsia-50' : 'border-neutral-200 bg-white'} p-6 flex flex-col shadow-sm`}
-            >
-              {plan.badge && (
-                <div className="absolute -top-3 left-4 inline-flex items-center gap-1 rounded-full border border-amber-300 bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-900 shadow-sm">
-                  <Star className="h-3.5 w-3.5" /> {plan.badge}
-                </div>
-              )}
+            <div key={plan.name} className={`rounded-2xl border ${plan.highlight ? 'border-fuchsia-300 bg-fuchsia-50' : 'border-neutral-200 bg-white'} p-6 flex flex-col shadow-sm`}>
               <div className="flex-1">
                 <h3 className="text-neutral-900 font-medium text-lg">{plan.name}</h3>
-                <div className="mt-1 text-sm text-neutral-700 space-y-0.5">
-                  {plan.blurb?.map((b) => (
-                    <div key={b}>{b}</div>
-                  ))}
-                </div>
                 <div className="mt-4 flex items-baseline gap-2">
                   <span className="text-3xl font-semibold text-neutral-900">{plan.price}</span>
                   <span className="text-sm text-neutral-600">{plan.cadence}</span>
@@ -232,11 +366,9 @@ function PricingPage() {
               <button className={`mt-6 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-semibold ${plan.highlight ? 'bg-neutral-900 text-white hover:bg-neutral-800' : 'bg-neutral-100 text-neutral-900 hover:bg-neutral-200'}`}>
                 {plan.cta}
               </button>
-              {plan.ctaSub && <div className="mt-2 text-xs text-neutral-600">{plan.ctaSub}</div>}
-              <div className="mt-4 text-xs text-neutral-600">{plan.disclaimer}</div>
             </div>
           ))}
-        </section>
+        </div>
 
         <p className="mt-8 text-xs text-neutral-500">ZertAI erstellt Entwürfe, die Ihre Arbeit beschleunigen. Bitte prüfen und genehmigen Sie jedes Dokument vor der Ausgabe – keine 100%‑Garantie ohne fachliche Prüfung.</p>
       </div>
