@@ -39,7 +39,7 @@ const plans = [
 
 export default function PricingPlans() {
   return (
-    <section id="plans" className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+    <section className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
       {plans.map((plan) => (
         <div
           key={plan.name}

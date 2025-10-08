@@ -25,7 +25,7 @@ export default function FAQAndComparison() {
   ];
 
   return (
-    <section className="mt-14">
+    <div className="mt-14">
       <h2 className="text-2xl sm:text-3xl font-semibold text-neutral-900">Häufig gestellte Fragen</h2>
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
         {faqs.map((item) => (
@@ -60,6 +60,6 @@ export default function FAQAndComparison() {
         </table>
       </div>
       <p className="mt-3 text-xs text-neutral-600">* Rechtlich informierte Formulierungen, keine 100%‑Garantie ohne fachliche Prüfung.</p>
-    </section>
+    </div>
   );
 }
